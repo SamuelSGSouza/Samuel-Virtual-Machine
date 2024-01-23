@@ -1,3 +1,4 @@
+from functions import split_string
 
 MOV = 'mov'
 SYSCALL = 'syscall'
@@ -27,21 +28,12 @@ VALID_REGISTERS = [STATE, A, B, C]
 VALID_SYSCALLS = ['print', 'read', 'exit','parse_num']
 
 
-
 def transform_content_into_readble_data(content:str)->dict:
     result = {
         'error':None,
         'instructions':None,
     }
-    instructions = content.split('\n')
-    instructions = list(map(lambda x: x.strip(),instructions))
-    instructions = list(filter(lambda x: x != '', instructions))
-    instructions = list(map(lambda x : x.split(','), instructions))
-    instructions = list(map(
-        lambda x: list(map(lambda y: y.strip(), x)), 
-        instructions))
-    instructions = list(map(lambda x: list(filter(lambda y: y != '', x)), instructions))
-   
+    instructions = split_string(content)
     for i in instructions:
         
         if i[0] not in VALID_INSTRUCTIONS:
@@ -60,11 +52,19 @@ def transform_content_into_readble_data(content:str)->dict:
                 return result
             
             #verify if its a number
-            if not i[2].isdigit():
-                result['error'] = f'Invalid number {i[2]}'
-                return result
-            formated = {'type':'number', 'value':float(i[2])}
-            i[2] = formated
+            if i[2].isdigit():
+                formated = {'type':'number', 'value':float(i[2])}
+                i[2] = formated
+            
+            elif i[2] in VALID_REGISTERS:
+                formated = {'type':'register', 'value':i[2]}
+                i[2] = formated
+
+            else:
+                raise Exception(f'Invalid value {i[2]}')
+
+            
+            
 
         if i[0] == MOV:
           
@@ -77,7 +77,7 @@ def transform_content_into_readble_data(content:str)->dict:
                 result['error'] = f'Invalid register {i}'
                 return result
             
-            elif i[2].startswith('"'):
+            elif i[2].startswith('"') or i[2].startswith("'"):
                 formated = {'type':'string', 'value':i[2][1:-1]}
             
 

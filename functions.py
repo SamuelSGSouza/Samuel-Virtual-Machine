@@ -1,8 +1,5 @@
 import re
 
-with open("teste.asm", 'r') as file:   
-        content = file.read()
-
 def split_string(content:str):
     commands=content.lower().split("\n")
     lis_commands = []
@@ -19,5 +16,3 @@ def split_string(content:str):
         if splitted:
             lis_commands.append(splitted)
     return lis_commands
-
-print(split_string(content))
