@@ -1,10 +1,5 @@
 
-
-mov eax "teste" 
-
-
-mov ecx "teste" 
-
+mov a  20
 
 
 

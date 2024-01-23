@@ -16,8 +16,11 @@ def main():
         content = file.read()
     
     parsed = transform_content_into_readble_data(content)
-
+    if parsed['error']:
+        print(parsed['error'])
+        exit(1)
     
+    print(parsed['instructions'])
 
 
 main()
