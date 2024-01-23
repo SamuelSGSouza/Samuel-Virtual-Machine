@@ -20,7 +20,7 @@ A = 'a'
 B = 'b'
 C = 'c'
 VALID_REGISTERS = [STATE, A, B, C]
-VALID_SYSCALLS = ['print', 'read', 'exit']
+VALID_SYSCALLS = ['print', 'read', 'exit','parse_num']
 
 
 

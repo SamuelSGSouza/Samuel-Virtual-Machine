@@ -30,3 +30,7 @@ def execute_virtual_machine(instructions):
 
             if regirsters[STATE]== 'read':
                 regirsters[A] = input()
+            
+            if regirsters[STATE] == 'parse_num':
+                regirsters[A] = int(regirsters[A])
+                
