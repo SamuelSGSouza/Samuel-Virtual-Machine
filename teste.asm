@@ -12,11 +12,15 @@ syscall
 
 mov, state, read
 syscall
-
+mov,b,a
 
 mov, a, "Você digitou"
 mov, state, print 
 syscall 
+
+mov, a, b 
+mov, state, print 
+syscall
 
 
 
