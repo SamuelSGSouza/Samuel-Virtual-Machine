@@ -17,10 +17,8 @@ def execute_virtual_machine(instructions):
             value = i[2]
             if value['type'] in ['number','string']:
                 regirsters[register] = value['value']
-        
+
         if instruction == SYSCALL:
-        
-        
             if regirsters[STATE] == 'print':
                 print(regirsters[A])
            
