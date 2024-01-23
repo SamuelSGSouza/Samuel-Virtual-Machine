@@ -3,6 +3,10 @@ MOV = 'mov'
 SYSCALL = 'syscall'
 VALID_INSTRUCTIONS = [
     MOV,
+    'add',
+    'sub',
+    'mul',
+    'div',
     'push',
     'pop',
     'syscall',
