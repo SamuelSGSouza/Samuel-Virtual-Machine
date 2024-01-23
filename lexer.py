@@ -1,5 +1,6 @@
 
 MOV = 'mov'
+SYSCALL = 'syscall'
 VALID_INSTRUCTIONS = [
     MOV,
     'push',
@@ -12,7 +13,12 @@ VALID_INSTRUCTIONS = [
     'jump_greater_than_equal',
     'jump_less_than_equal',
     ]
-VALID_REGISTERS = ['state','a','b','c']
+
+STATE = 'state'
+A = 'a'
+B = 'b'
+C = 'c'
+VALID_REGISTERS = [STATE, A, B, C]
 VALID_SYSCALLS = ['print', 'read', 'exit']
 
 
@@ -27,25 +33,30 @@ def transform_content_into_readble_data(content:str)->dict:
     instructions = list(filter(lambda x: x != '', instructions))
     instructions = list(map(lambda x : x.split(' '), instructions))
     instructions = list(map(lambda x: list(filter(lambda y: y != '', x)), instructions))
+   
     for i in instructions:
         
         if i[0] not in VALID_INSTRUCTIONS:
-            result['error'] = f'Invalid instruction {i[0]}'
+            result['error'] = f'Invalid instruction {i}'
             return result
         
         if i[0] == MOV:
+            
             if len(i) != 3:
-                result['error'] = f'Invalid instruction {i[0]}'
+                result['error'] = f'Invalid instruction {i}'
                 return result
+            
             if i[1] not in VALID_REGISTERS:
-                result['error'] = f'Invalid register {i[1]}'
+                result['error'] = f'Invalid register {i}'
                 return result
             
             if i[2].startswith('"'):
                 formated = {'type':'string', 'value':i[2][1:-1]}
+            
             #verify if its a number
             elif i[2].isdigit():
                 formated = {'type':'number', 'value':int(i[2])}
+            
             elif i[2] in VALID_REGISTERS:
                 formated = {'type':'register', 'value':i[2]}
             else:
