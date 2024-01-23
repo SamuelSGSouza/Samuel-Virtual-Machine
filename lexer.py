@@ -32,6 +32,7 @@ def transform_content_into_readble_data(content:str)->dict:
     instructions = list(map(lambda x: x.strip(),instructions))
     instructions = list(filter(lambda x: x != '', instructions))
     instructions = list(map(lambda x : x.split(' '), instructions))
+    
     instructions = list(map(lambda x: list(filter(lambda y: y != '', x)), instructions))
    
     for i in instructions:
@@ -41,11 +42,9 @@ def transform_content_into_readble_data(content:str)->dict:
             return result
         
         if i[0] == MOV:
-            
-            if len(i) != 3:
-                result['error'] = f'Invalid instruction {i}'
-                return result
-            
+            i[-1] = ''.join(i[-1:])
+
+
             if i[1] not in VALID_REGISTERS:
                 result['error'] = f'Invalid register {i}'
                 return result

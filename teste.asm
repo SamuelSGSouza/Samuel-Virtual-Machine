@@ -1,7 +1,7 @@
 
 
 
-mov a "Fodase"
+mov a "Fod   ase"
 mov state "print"
 syscall 
 
