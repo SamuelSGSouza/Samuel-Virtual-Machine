@@ -4,7 +4,7 @@ def execute_virtual_machine(instructions):
 
     stack  = []
     regirsters = {
-        STATE:-1,
+        STATE:None,
         A:None,
         B:None,
         C:None,
@@ -19,7 +19,6 @@ def execute_virtual_machine(instructions):
                 regirsters[register] = value['value']
         
         if instruction == SYSCALL:
-        
         
         
             if regirsters[STATE] == 'print':
