@@ -47,9 +47,32 @@ def transform_content_into_readble_data(content:str)->dict:
         if i[0] not in VALID_INSTRUCTIONS:
             result['error'] = f'Invalid instruction {i}'
             return result
-        
-        if i[0] in [MOV,'add','sub','mul','div']:
+       
+        if i[0] in ['add','sub','mul','div']:
+            
           
+            if len(i) != 3:
+                result['error'] = f'Invalid instruction {i}'
+                return result
+            
+            if i[1] not in VALID_REGISTERS:
+                result['error'] = f'Invalid register {i}'
+                return result
+            
+            #verify if its a number
+            if not i[2].isdigit():
+                result['error'] = f'Invalid number {i[2]}'
+                return result
+            formated = {'type':'number', 'value':float(i[2])}
+            i[2] = formated
+
+        if i[0] == MOV:
+          
+            if len(i) != 3:
+                result['error'] = f'Invalid instruction {i}'
+                return result
+
+
             if i[1] not in VALID_REGISTERS:
                 result['error'] = f'Invalid register {i}'
                 return result

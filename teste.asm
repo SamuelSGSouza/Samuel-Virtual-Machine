@@ -1,8 +1,7 @@
-mov,state,print 
+mov ,a ,40
 
-mov,a,0
+add,a,30
 
-add,a,20
-add,a,20
+mov, state,print 
 
 syscall

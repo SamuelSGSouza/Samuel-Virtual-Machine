@@ -20,6 +20,9 @@ def execute_virtual_machine(instructions):
             if value['type'] == 'register':
                 regirsters[register] = regirsters[value['value']]
         
+
+    
+                
         if instruction == 'add':
             register = i[1]
             value = i[2]
@@ -65,5 +68,7 @@ def execute_virtual_machine(instructions):
                 regirsters[A] = input()
             
             if regirsters[STATE] == 'parse_num':
-                regirsters[A] = float(regirsters[A])
-                
+                if regirsters[A].isdigit():
+                    regirsters[A] = float(regirsters[A])
+                else:
+                    regirsters[A] = 'NaN'
