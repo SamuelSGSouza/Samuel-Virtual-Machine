@@ -19,6 +19,39 @@ def execute_virtual_machine(instructions):
                 regirsters[register] = value['value']
             if value['type'] == 'register':
                 regirsters[register] = regirsters[value['value']]
+        
+        if instruction == 'add':
+            register = i[1]
+            value = i[2]
+            if value['type'] == 'number':
+                regirsters[register] += value['value']
+            if value['type'] == 'register':
+                regirsters[register] += regirsters[value['value']]
+
+        if instruction == 'sub':
+            register = i[1]
+            value = i[2]
+            if value['type'] == 'number':
+                regirsters[register] -= value['value']
+            if value['type'] == 'register':
+                regirsters[register] -= regirsters[value['value']]
+            
+        if instruction == 'mul':
+            register = i[1]
+            value = i[2]
+            if value['type'] == 'number':
+                regirsters[register] *= value['value']
+            if value['type'] == 'register':
+                regirsters[register] *= regirsters[value['value']]
+        
+        if instruction == 'div':
+            register = i[1]
+            value = i[2]
+            if value['type'] == 'number':
+                regirsters[register] /= value['value']
+            if value['type'] == 'register':
+                regirsters[register] /= regirsters[value['value']]
+        
         if instruction == SYSCALL:
             if regirsters[STATE] == 'print':
                 print(regirsters[A])
@@ -32,5 +65,5 @@ def execute_virtual_machine(instructions):
                 regirsters[A] = input()
             
             if regirsters[STATE] == 'parse_num':
-                regirsters[A] = int(regirsters[A])
+                regirsters[A] = float(regirsters[A])
                 

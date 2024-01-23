@@ -48,7 +48,7 @@ def transform_content_into_readble_data(content:str)->dict:
             result['error'] = f'Invalid instruction {i}'
             return result
         
-        if i[0] == MOV:
+        if i[0] in [MOV,'add','sub','mul','div']:
           
             if i[1] not in VALID_REGISTERS:
                 result['error'] = f'Invalid register {i}'
@@ -64,7 +64,7 @@ def transform_content_into_readble_data(content:str)->dict:
 
             #verify if its a number
             elif i[2].isdigit():
-                formated = {'type':'number', 'value':int(i[2])}
+                formated = {'type':'number', 'value':float(i[2])}
             
 
             elif i[2] in VALID_REGISTERS:

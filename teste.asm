@@ -1,7 +1,8 @@
-mov , state , print
-mov , a , "qualquer"
-syscall
+mov,state,print 
 
-mov, b, "erte"
-mov, a , b
+mov,a,0
+
+add,a,20
+add,a,20
+
 syscall
