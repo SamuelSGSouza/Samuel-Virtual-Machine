@@ -1,7 +1,6 @@
-mov ,a ,40
-
-add,a,30
-
-mov, state,print 
-
+mov ,state,read 
+syscall
+mov ,state, parse_num
+syscall
+mov ,state,print 
 syscall
