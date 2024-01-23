@@ -5,7 +5,7 @@ from os.path import isfile
 from lexer import transform_content_into_readble_data
 from execution import execute_virtual_machine
 def main():
-    if len(argv) != 2:
+    if len(argv) < 2:
         print("File not passed")
         exit(1)
     

@@ -62,10 +62,7 @@ def transform_content_into_readble_data(content:str)->dict:
 
             else:
                 raise Exception(f'Invalid value {i[2]}')
-
-            
-            
-
+ 
         if i[0] == MOV:
           
             if len(i) != 3:

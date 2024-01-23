@@ -19,10 +19,7 @@ def execute_virtual_machine(instructions):
                 regirsters[register] = value['value']
             if value['type'] == 'register':
                 regirsters[register] = regirsters[value['value']]
-        
-
-    
-                
+            
         if instruction == 'add':
             register = i[1]
             value = i[2]

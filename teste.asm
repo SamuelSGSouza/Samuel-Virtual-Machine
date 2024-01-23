@@ -21,6 +21,6 @@ syscall
 mov state parse_num
 syscall
 
-add a b
+div a b
 mov state print
 syscall
