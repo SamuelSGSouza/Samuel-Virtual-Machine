@@ -36,7 +36,7 @@ def transform_content_into_readble_data(content:str)->dict:
     instructions = split_string(content)
     line = 1
     for i in instructions:
-        if i == 0:
+        if i == 0: #handling empty parts of the instructions
             line += 1
             continue
         
@@ -73,6 +73,18 @@ def transform_content_into_readble_data(content:str)->dict:
             else:
                 raise Exception(f'Invalid value {i[2]}')
  
+        if i[0] in ["push", "pop"]:
+            if len(i) != 2:
+                result['error'] = f'Invalid instruction -> {" ".join(i)} <- on line {line}'
+                return result
+
+            if i[1] not in VALID_REGISTERS:
+                result['error'] = f'Invalid register -> {i[1]} <- on line {line}'
+                match = command_incorrect_matcher(i[1], VALID_REGISTERS)
+                if match:
+                    result['error'] += f' Did you mean -> {match} <- ?'
+                return result
+            
         if i[0] == MOV:
           
             if len(i) != 3:
@@ -111,4 +123,5 @@ def transform_content_into_readble_data(content:str)->dict:
     
     instructions = [i for i in instructions if i != 0]
     result['instructions'] = instructions
+    print(f"result: {result}\n")
     return result

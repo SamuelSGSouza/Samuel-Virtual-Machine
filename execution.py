@@ -55,6 +55,16 @@ def execute_virtual_machine(instructions):
             if value['type'] == 'register':
                 regirsters[register] /= regirsters[value['value']]
         
+        if instruction == 'push':
+            register = i[1]
+            stack.append(regirsters[register])
+            print(f"stack: {stack}")
+
+        if instruction == 'pop':
+            register = i[1]
+            regirsters[register] = stack.pop()
+            print(f"stack: {stack}")
+
         if instruction == SYSCALL:
             if regirsters[STATE] == 'print':
                 print(regirsters[A])
